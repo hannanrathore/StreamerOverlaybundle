@@ -10,221 +10,99 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Metamorphous&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
-    /* Genshin Root Theme Variables */
     :root {
       --genshin-gold: #e8c688;
       --genshin-gold-bright: #fff2bf;
       --genshin-dark: #090e1a;
-      --panel-bg: rgba(12, 18, 34, 0.94);
+      --panel-bg: rgba(12, 18, 34, 0.96);
       --panel-border: rgba(232, 198, 136, 0.4);
-      
       --accent-color: #71efff;
       --accent-glow: rgba(113, 239, 255, 0.55);
       --accent-gradient: linear-gradient(135deg, #71efff 0%, #1e528e 100%);
     }
 
-    /* Elemental Theme Classes */
-    .theme-cryo {
-      --accent-color: #8be4ff;
-      --accent-glow: rgba(139, 228, 255, 0.55);
-      --accent-gradient: linear-gradient(135deg, #a6f0ff 0%, #3080b0 100%);
-    }
-
-    .theme-anemo {
-      --accent-color: #5cf2bd;
-      --accent-glow: rgba(92, 242, 189, 0.55);
-      --accent-gradient: linear-gradient(135deg, #72ffd0 0%, #1d8263 100%);
-    }
-
-    .theme-electro {
-      --accent-color: #d28bff;
-      --accent-glow: rgba(210, 139, 255, 0.55);
-      --accent-gradient: linear-gradient(135deg, #e4aeff 0%, #6f2fa0 100%);
-    }
-
-    .theme-pyro {
-      --accent-color: #ff9d6b;
-      --accent-glow: rgba(255, 157, 107, 0.55);
-      --accent-gradient: linear-gradient(135deg, #ffb38a 0%, #b83c1b 100%);
-    }
-
-    .theme-hydro {
-      --accent-color: #43b3ff;
-      --accent-glow: rgba(67, 179, 255, 0.55);
-      --accent-gradient: linear-gradient(135deg, #69c5ff 0%, #1656a8 100%);
-    }
+    .theme-cryo { --accent-color: #8be4ff; --accent-glow: rgba(139, 228, 255, 0.55); --accent-gradient: linear-gradient(135deg, #a6f0ff 0%, #3080b0 100%); }
+    .theme-anemo { --accent-color: #5cf2bd; --accent-glow: rgba(92, 242, 189, 0.55); --accent-gradient: linear-gradient(135deg, #72ffd0 0%, #1d8263 100%); }
+    .theme-electro { --accent-color: #d28bff; --accent-glow: rgba(210, 139, 255, 0.55); --accent-gradient: linear-gradient(135deg, #e4aeff 0%, #6f2fa0 100%); }
+    .theme-pyro { --accent-color: #ff9d6b; --accent-glow: rgba(255, 157, 107, 0.55); --accent-gradient: linear-gradient(135deg, #ffb38a 0%, #b83c1b 100%); }
+    .theme-hydro { --accent-color: #43b3ff; --accent-glow: rgba(67, 179, 255, 0.55); --accent-gradient: linear-gradient(135deg, #69c5ff 0%, #1656a8 100%); }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Quicksand', sans-serif;
-      background-color: var(--genshin-dark);
-      color: #e2e8f0;
-      min-height: 100vh;
-      overflow-x: hidden;
-      transform: translateZ(0); /* Zero CPU layer */
-    }
-
+    body { font-family: 'Quicksand', sans-serif; background-color: var(--genshin-dark); color: #e2e8f0; min-height: 100vh; overflow-x: hidden; }
     .font-cinzel { font-family: 'Cinzel', serif; }
     .font-genshin { font-family: 'Metamorphous', 'Cinzel', serif; }
 
-    /* Ultra Minimal Static Background */
     .starfield-bg {
       background-color: #080c18;
-      background-image: radial-gradient(circle at 50% 50%, rgba(20, 30, 55, 0.5) 0%, rgba(8, 12, 24, 1) 100%);
+      background-image: 
+        radial-gradient(1.5px 1.5px at 25px 35px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 80px, var(--accent-color), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 100px 40px, #ffffff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 170px 130px, var(--genshin-gold), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 240px 90px, #ffffff, rgba(0,0,0,0));
+      background-size: 280px 280px;
     }
 
-    /* Minimalist Genshin Card Frame */
     .genshin-panel {
       position: relative;
-      background: rgba(12, 18, 34, 0.98);
+      background: var(--panel-bg);
       border: 1px solid var(--panel-border);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
     }
 
-    /* Genshin UI Corner Brackets */
-    .genshin-panel::before, .genshin-panel::after {
-      content: '';
-      position: absolute;
-      width: 12px;
-      height: 12px;
-      border: 2px solid var(--genshin-gold);
-      pointer-events: none;
-    }
+    .glow-gold { text-shadow: 0 0 10px rgba(232, 198, 136, 0.5); }
+    .glow-accent { color: var(--accent-color); text-shadow: 0 0 12px var(--accent-glow); }
 
-    .genshin-panel::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
-    .genshin-panel::after { bottom: -2px; right: -2px; border-left: none; border-top: none; }
-
-    .glow-gold {
-      text-shadow: 0 0 6px rgba(232, 198, 136, 0.4);
-    }
-
-    .glow-accent {
-      color: var(--accent-color);
-      text-shadow: 0 0 8px var(--accent-glow);
-    }
-
-    /* Primogem Shape - Static without animation for 0 CPU */
     .primogem-shape {
-      width: 16px;
-      height: 16px;
+      width: 18px; height: 18px;
       background: var(--accent-gradient);
       clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
       display: inline-block;
     }
 
-    /* Fullscreen OBS Pure Output Viewports */
-    .obs-viewport-horizontal {
-      width: 1920px;
-      height: 1080px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: 99999;
-    }
-
-    .obs-viewport-vertical {
-      width: 1080px;
-      height: 1920px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: 99999;
-    }
+    .obs-viewport-horizontal { width: 1920px; height: 1080px; position: fixed; top: 0; left: 0; overflow: hidden; z-index: 99999; }
+    .obs-viewport-vertical { width: 1080px; height: 1920px; position: fixed; top: 0; left: 0; overflow: hidden; z-index: 99999; }
   </style>
 </head>
 <body id="appBody" class="min-h-screen theme-cryo bg-slate-950 text-slate-100 flex flex-col">
 
-  <!-- ========================================================= -->
-  <!-- CONTROL DASHBOARD WORKSPACE                               -->
-  <!-- ========================================================= -->
+  <!-- DASHBOARD WORKSPACE -->
   <div id="dashboardUI" class="flex flex-col min-h-screen w-full">
-    
-    <!-- Navigation Header -->
-    <header class="bg-slate-950/95 border-b border-amber-500/30 px-6 py-3 sticky top-0 z-50 flex flex-wrap items-center justify-between gap-4">
+    <header class="bg-slate-950/95 border-b border-amber-500/30 px-6 py-3 sticky top-0 z-50 flex items-center justify-between">
       <div class="flex items-center space-x-3">
         <span class="primogem-shape"></span>
-        <div>
-          <h1 class="font-cinzel font-bold text-amber-200 text-lg tracking-wider flex items-center">
-            STREAM OVERLAY STUDIO
-            <span class="text-[10px] font-normal text-amber-300 border border-amber-500/40 px-2 py-0.5 rounded-full ml-3 bg-amber-500/10">0% CPU / Anti-Cache OBS Sync</span>
-          </h1>
-          <p class="text-xs text-slate-400">Zero Idle Load • Instant OBS Broadcast Engine</p>
-        </div>
-      </div>
-
-      <div class="flex items-center space-x-3">
-        <div id="syncStatusBadge" class="flex items-center space-x-2 text-xs font-semibold text-emerald-300 bg-emerald-950/50 border border-emerald-500/30 px-3 py-1.5 rounded-lg">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-          <span id="syncStatusText">Broadcaster Ready</span>
-        </div>
+        <h1 class="font-cinzel font-bold text-amber-200 text-lg">STREAM OVERLAY STUDIO</h1>
       </div>
     </header>
 
-    <!-- Studio Main Grid -->
     <main class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-6 p-4 md:p-6 max-w-[1800px] w-full mx-auto">
-      
-      <!-- Left Panel: Universal Live Settings & Controls -->
-      <div class="lg:col-span-4 xl:col-span-4 bg-slate-900/90 border border-amber-500/30 rounded-xl p-5 shadow-2xl flex flex-col space-y-4">
+      <div class="lg:col-span-4 bg-slate-900/90 border border-amber-500/30 rounded-xl p-5 shadow-2xl flex flex-col space-y-4">
+        <h2 class="font-cinzel font-bold text-amber-300 text-sm uppercase">Master Control Panel</h2>
         
-        <div class="border-b border-amber-500/20 pb-3 flex items-center justify-between">
-          <h2 class="font-cinzel font-bold text-amber-300 text-sm tracking-wider uppercase flex items-center">
-            <span class="primogem-shape mr-2"></span> Master Control Panel
-          </h2>
-          <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">Instant Broadcast</span>
-        </div>
-
-        <!-- Master Save & Force Refresh OBS Button -->
-        <div class="space-y-2">
-          <button onclick="handleManualSaveAndUpdate()" class="w-full bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 hover:from-amber-400 hover:to-amber-300 text-slate-950 font-black py-2.5 px-3 rounded-lg shadow-lg text-xs uppercase tracking-wider transition active:scale-95 flex items-center justify-center space-x-2 border border-amber-300">
-            <span>⚡ FORCE OBS REFRESH & BROADCAST</span>
-          </button>
-          <p class="text-[10px] text-slate-400 text-center">Clicking this instantly forces all open OBS browser sources to sync.</p>
-        </div>
-
         <div class="space-y-3.5 text-xs">
-          <!-- Channel Handle -->
           <div>
-            <label class="text-amber-200/90 font-bold uppercase tracking-wider block mb-1">Channel Handle / Streamer Name</label>
-            <input type="text" id="cfgChannel" value="@ThirdDescender" oninput="broadcastUpdate()"
-              class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100 focus:outline-none focus:border-amber-400">
+            <label class="text-amber-200/90 font-bold block mb-1">Channel Handle</label>
+            <input type="text" id="cfgChannel" value="@ThirdDescender" oninput="pushChanges()" class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100">
           </div>
-
-          <!-- Main Stream Title -->
           <div>
-            <label class="text-amber-200/90 font-bold uppercase tracking-wider block mb-1">Stream Title / Main Topic</label>
-            <input type="text" id="cfgTitle" value="Version 7.1 F2P Speedrun | 0 Chests Challenge" oninput="broadcastUpdate()"
-              class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100 focus:outline-none focus:border-amber-400">
+            <label class="text-amber-200/90 font-bold block mb-1">Stream Title</label>
+            <input type="text" id="cfgTitle" value="Version 7.1 F2P Speedrun | 0 Chests Challenge" oninput="pushChanges()" class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100">
           </div>
-
-          <!-- Notice / Announcement -->
           <div>
-            <label class="text-amber-200/90 font-bold uppercase tracking-wider block mb-1">Announcement Banner (Optional)</label>
-            <input type="text" id="cfgNotice" value="Pulling 5-Stars Today! Chat Rules in Description." oninput="broadcastUpdate()"
-              class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100 focus:outline-none focus:border-amber-400">
+            <label class="text-amber-200/90 font-bold block mb-1">Announcement Banner</label>
+            <input type="text" id="cfgNotice" value="Pulling 5-Stars Today!" oninput="pushChanges()" class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100">
           </div>
-
-          <!-- Patch / Status Tag -->
           <div>
-            <label class="text-amber-200/90 font-bold uppercase tracking-wider block mb-1">Game Patch / Server Tag</label>
-            <input type="text" id="cfgPatch" value="Version 7.1 | Asia Server" oninput="broadcastUpdate()"
-              class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100 focus:outline-none focus:border-amber-400">
+            <label class="text-amber-200/90 font-bold block mb-1">Game Patch / Server Tag</label>
+            <input type="text" id="cfgPatch" value="Version 7.1 | Asia Server" oninput="pushChanges()" class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100">
           </div>
-
-          <!-- Social Handles -->
           <div>
-            <label class="text-amber-200/90 font-bold uppercase tracking-wider block mb-1">Social Media Handle</label>
-            <input type="text" id="cfgSocial" value="TikTok & YouTube: @thirddescender" oninput="broadcastUpdate()"
-              class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100 focus:outline-none focus:border-amber-400">
+            <label class="text-amber-200/90 font-bold block mb-1">Social Media Handle</label>
+            <input type="text" id="cfgSocial" value="TikTok & YouTube: @thirddescender" oninput="pushChanges()" class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100">
           </div>
-
-          <!-- Elemental Color Theme -->
           <div>
-            <label class="text-amber-200/90 font-bold uppercase tracking-wider block mb-1">Elemental Color Theme</label>
-            <select id="cfgTheme" onchange="broadcastUpdate()"
-              class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100 focus:outline-none focus:border-amber-400 font-semibold">
+            <label class="text-amber-200/90 font-bold block mb-1">Elemental Color Theme</label>
+            <select id="cfgTheme" onchange="pushChanges()" class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-3 py-2 text-amber-100 font-semibold">
               <option value="cryo" selected>Cryo (Cyan / Ice)</option>
               <option value="anemo">Anemo (Teal / Wind)</option>
               <option value="electro">Electro (Purple / Lightning)</option>
@@ -232,548 +110,221 @@
               <option value="hydro">Hydro (Blue / Ocean)</option>
             </select>
           </div>
-
-          <!-- Starting Timer Controls -->
-          <div class="border-t border-slate-800 pt-3">
-            <label class="text-amber-200/90 font-bold uppercase tracking-wider block mb-2">Live Countdown Timer Controls</label>
-            <div class="grid grid-cols-2 gap-2 mb-2">
-              <div>
-                <span class="text-[10px] text-slate-400 block mb-0.5">Timer Minutes</span>
-                <input type="number" id="cfgMinutes" value="15" min="1" max="60" onchange="setNewTimerMinutes()"
-                  class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-2.5 py-1.5 text-amber-100 text-center font-bold">
-              </div>
-              <div class="flex items-end">
-                <button onclick="toggleTimer()" id="btnTimerToggle" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-1.5 px-2 rounded-lg text-xs transition">
-                  ⏸ Pause
-                </button>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-3 gap-1.5">
-              <button onclick="addTimerTime(60)" class="bg-slate-800 hover:bg-slate-700 text-amber-200 py-1 rounded text-[11px] font-bold">+1 Min</button>
-              <button onclick="addTimerTime(300)" class="bg-slate-800 hover:bg-slate-700 text-amber-200 py-1 rounded text-[11px] font-bold">+5 Min</button>
-              <button onclick="resetTimer()" class="bg-slate-800 hover:bg-slate-700 text-red-300 py-1 rounded text-[11px] font-bold">Reset</button>
-            </div>
+          <div>
+            <label class="text-amber-200/90 font-bold block mb-1">Timer Minutes</label>
+            <input type="number" id="cfgMinutes" value="15" min="1" max="60" onchange="setTimerMinutes()" class="w-full bg-slate-950 border border-amber-500/40 rounded-lg px-2.5 py-1.5 text-amber-100 text-center font-bold">
           </div>
         </div>
-
-        <!-- Static OBS Browser Links (With Anti-Cache Parameters) -->
-        <div class="mt-4 border-t border-slate-800 pt-3 space-y-2">
-          <div class="flex items-center justify-between">
-            <label class="text-amber-300 font-bold uppercase text-[11px] block">OBS Anti-Cache Browser URLs</label>
-            <span class="text-[10px] text-emerald-400 font-semibold">⚡ Zero-Cache Direct Link</span>
-          </div>
-
-          <!-- 3 Horizontal Links -->
-          <div class="space-y-1">
-            <span class="text-[10px] text-amber-200/70 font-bold uppercase tracking-wider">Horizontal 16:9 (1920 x 1080)</span>
-            <div class="bg-slate-950 border border-slate-800 p-1.5 rounded flex items-center justify-between text-[11px] font-mono text-slate-300">
-              <span class="truncate max-w-[220px]">overlay_unified.html?scene=starting&aspect=horizontal</span>
-              <button onclick="copyStaticUrl('starting','horizontal')" class="bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-2 py-0.5 rounded text-[10px] font-sans">Copy URL</button>
-            </div>
-            <div class="bg-slate-950 border border-slate-800 p-1.5 rounded flex items-center justify-between text-[11px] font-mono text-slate-300">
-              <span class="truncate max-w-[220px]">overlay_unified.html?scene=brb&aspect=horizontal</span>
-              <button onclick="copyStaticUrl('brb','horizontal')" class="bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-2 py-0.5 rounded text-[10px] font-sans">Copy URL</button>
-            </div>
-            <div class="bg-slate-950 border border-slate-800 p-1.5 rounded flex items-center justify-between text-[11px] font-mono text-slate-300">
-              <span class="truncate max-w-[220px]">overlay_unified.html?scene=ended&aspect=horizontal</span>
-              <button onclick="copyStaticUrl('ended','horizontal')" class="bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-2 py-0.5 rounded text-[10px] font-sans">Copy URL</button>
-            </div>
-          </div>
-
-          <!-- 3 Vertical Links -->
-          <div class="space-y-1 pt-2">
-            <span class="text-[10px] text-amber-200/70 font-bold uppercase tracking-wider">Vertical 9:16 Shorts (1080 x 1920)</span>
-            <div class="bg-slate-950 border border-slate-800 p-1.5 rounded flex items-center justify-between text-[11px] font-mono text-slate-300">
-              <span class="truncate max-w-[220px]">overlay_unified.html?scene=starting&aspect=vertical</span>
-              <button onclick="copyStaticUrl('starting','vertical')" class="bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-2 py-0.5 rounded text-[10px] font-sans">Copy URL</button>
-            </div>
-            <div class="bg-slate-950 border border-slate-800 p-1.5 rounded flex items-center justify-between text-[11px] font-mono text-slate-300">
-              <span class="truncate max-w-[220px]">overlay_unified.html?scene=brb&aspect=vertical</span>
-              <button onclick="copyStaticUrl('brb','vertical')" class="bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-2 py-0.5 rounded text-[10px] font-sans">Copy URL</button>
-            </div>
-            <div class="bg-slate-950 border border-slate-800 p-1.5 rounded flex items-center justify-between text-[11px] font-mono text-slate-300">
-              <span class="truncate max-w-[220px]">overlay_unified.html?scene=ended&aspect=vertical</span>
-              <button onclick="copyStaticUrl('ended','vertical')" class="bg-amber-500/20 hover:bg-amber-500/40 text-amber-300 px-2 py-0.5 rounded text-[10px] font-sans">Copy URL</button>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Right Panel: Studio Live Canvas Previews -->
-      <div class="lg:col-span-8 xl:col-span-8 flex flex-col items-center space-y-4">
-        
-        <!-- Scene & Aspect Preview Selector -->
-        <div class="w-full flex flex-wrap items-center justify-between gap-3 bg-slate-900/80 border border-slate-800 p-2.5 rounded-xl">
-          <!-- Scene Selector -->
-          <div class="flex items-center space-x-2">
-            <span class="text-xs text-amber-300/80 uppercase font-bold tracking-wider px-1">Scene:</span>
-            <button onclick="switchPreviewScene('starting')" id="tab-starting" class="px-3 py-1 rounded-lg border border-amber-500/60 bg-amber-500/20 text-amber-200 text-xs font-bold transition">Starting Soon</button>
-            <button onclick="switchPreviewScene('brb')" id="tab-brb" class="px-3 py-1 rounded-lg border border-slate-800 text-slate-400 text-xs font-bold hover:text-amber-200 transition">Be Right Back</button>
-            <button onclick="switchPreviewScene('ended')" id="tab-ended" class="px-3 py-1 rounded-lg border border-slate-800 text-slate-400 text-xs font-bold hover:text-amber-200 transition">Stream Ended</button>
-          </div>
-
-          <!-- Aspect Selector -->
-          <div class="flex items-center space-x-2 bg-slate-950 p-1 rounded-lg border border-slate-800">
-            <span class="text-[11px] text-slate-400 font-bold px-2">Aspect:</span>
-            <button onclick="switchPreviewAspect('horizontal')" id="btnAspectHoriz" class="px-3 py-1 rounded bg-amber-500/30 text-amber-200 text-xs font-bold border border-amber-500/50">16:9 Landscape</button>
-            <button onclick="switchPreviewAspect('vertical')" id="btnAspectVert" class="px-3 py-1 rounded text-slate-400 text-xs font-bold hover:text-amber-200">9:16 Vertical Shorts</button>
-          </div>
+      <div class="lg:col-span-8 flex flex-col items-center space-y-4">
+        <div class="w-full flex items-center space-x-2 bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
+          <span class="text-xs text-amber-300 font-bold">Scene:</span>
+          <button onclick="switchScene('starting')" id="tab-starting" class="px-3 py-1 rounded bg-amber-500/20 text-amber-200 text-xs font-bold border border-amber-500/50">Starting Soon</button>
+          <button onclick="switchScene('brb')" id="tab-brb" class="px-3 py-1 rounded text-slate-400 text-xs font-bold">Be Right Back</button>
+          <button onclick="switchScene('ended')" id="tab-ended" class="px-3 py-1 rounded text-slate-400 text-xs font-bold">Stream Ended</button>
         </div>
-
-        <!-- Rendered Canvas Preview Container -->
-        <div id="previewFrame" class="w-full aspect-video rounded-xl overflow-hidden border-2 border-amber-500/40 shadow-2xl relative starfield-bg flex flex-col justify-between p-6 md:p-10 select-none transition-all duration-300">
-          <div id="previewRenderArea" class="w-full h-full flex flex-col justify-between relative z-10"></div>
+        <div id="previewFrame" class="w-full aspect-video rounded-xl border-2 border-amber-500/40 starfield-bg p-8 flex flex-col justify-between">
+          <div id="renderArea" class="w-full h-full flex flex-col justify-between"></div>
         </div>
-
       </div>
-
     </main>
   </div>
 
-  <!-- ========================================================= -->
-  <!-- OBS STANDALONE RENDER VIEWPORT (AUTO TRIGGERED VIA URL)    -->
-  <!-- ========================================================= -->
+  <!-- OBS VIEWPORT -->
   <div id="obsRenderUI" class="hidden starfield-bg flex flex-col justify-between select-none">
     <div id="obsRenderArea" class="w-full h-full flex flex-col justify-between relative z-10"></div>
   </div>
 
-  <!-- Toast Alert -->
-  <div id="toast" class="fixed bottom-6 right-6 bg-amber-400 text-slate-950 px-5 py-2.5 rounded-xl font-bold shadow-2xl opacity-0 pointer-events-none transition-all duration-300 transform translate-y-3 z-50 flex items-center space-x-2 text-xs">
-    <span>✓ Static OBS URL copied!</span>
-  </div>
-
-  <!-- ========================================================= -->
-  <!-- JAVASCRIPT REAL-TIME BROADCAST & ZERO CACHE ENGINE        -->
-  <!-- ========================================================= -->
   <script>
-    // Global State Container
-    const state = {
-      isObsMode: false,
-      scene: 'starting',      
-      aspect: 'horizontal',   
-      previewScene: 'starting',
-      previewAspect: 'horizontal',
+    const defaultState = {
+      scene: 'starting',
+      aspect: 'horizontal',
       channel: '@ThirdDescender',
       title: 'Version 7.1 F2P Speedrun | 0 Chests Challenge',
-      notice: 'Pulling 5-Stars Today! Chat Rules in Description.',
+      notice: 'Pulling 5-Stars Today!',
       patch: 'Version 7.1 | Asia Server',
       social: 'TikTok & YouTube: @thirddescender',
       theme: 'cryo',
       minutes: 15,
-      timerTargetTimestamp: Date.now() + 15 * 60 * 1000,
       timerSeconds: 900,
       timerRunning: true
     };
 
-    // Cross-tab Synchronization using BroadcastChannel + Fallback
-    const SYNC_CHANNEL_NAME = 'genshin_overlay_sync_v3';
-    let broadcast = null;
-    try {
-      broadcast = new BroadcastChannel(SYNC_CHANNEL_NAME);
-    } catch (e) {
-      console.warn('BroadcastChannel unavailable:', e);
+    let state = loadState();
+    const broadcast = new BroadcastChannel('genshin_overlay_sync');
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem('genshin_overlay_state');
+        return saved ? JSON.parse(saved) : defaultState;
+      } catch(e) { return defaultState; }
     }
 
-    // Last known timestamp of storage write to avoid unnecessary DOM overwrites
-    let lastStateUpdatedAt = 0;
+    function saveState() {
+      try { localStorage.setItem('genshin_overlay_state', JSON.stringify(state)); } catch(e){}
+    }
 
     window.addEventListener('DOMContentLoaded', () => {
-      // 1. Parse URL Parameters & Hash (for local file or OBS browser compatibility)
-      let params = new URLSearchParams(window.location.search);
-      if (!params.has('scene') && window.location.hash) {
-        const hashStr = window.location.hash.substring(1);
-        params = new URLSearchParams(hashStr);
-      }
-
+      const params = new URLSearchParams(window.location.search);
       if (params.has('scene')) {
         state.isObsMode = true;
         state.scene = params.get('scene');
         state.aspect = params.get('aspect') || 'horizontal';
-      }
-
-      // 2. Initial state hydration from localStorage
-      loadSavedState();
-
-      // If OBS Mode and no target timestamp existed yet, initialize & persist master target timestamp
-      if (state.isObsMode && !state.timerTargetTimestamp) {
-        state.timerTargetTimestamp = Date.now() + state.minutes * 60 * 1000;
-      }
-
-      // 3. Render view according to mode
-      if (state.isObsMode) {
+        
         document.getElementById('dashboardUI').classList.add('hidden');
         const obsUI = document.getElementById('obsRenderUI');
         obsUI.classList.remove('hidden');
-
-        if (state.aspect === 'vertical') {
-          obsUI.className = 'obs-viewport-vertical starfield-bg flex flex-col justify-between select-none p-12';
-        } else {
-          obsUI.className = 'obs-viewport-horizontal starfield-bg flex flex-col justify-between select-none p-16';
-        }
-
+        obsUI.className = state.aspect === 'vertical' ? 'obs-viewport-vertical starfield-bg flex flex-col justify-between p-12' : 'obs-viewport-horizontal starfield-bg flex flex-col justify-between p-16';
+        
         applyTheme(state.theme);
-        renderObsScene();
-      } else {
-        // Broadcaster Control Dashboard initial setup
-        syncInputsFromState();
-        applyTheme(state.theme);
-        updateDashboardPreview();
-        // Immediately persist initial state so OBS sources catch up upon connection
-        saveState();
-      }
+        render();
 
-      // 4. Setup broadcast listeners
-      if (broadcast) {
+        // Listen to live updates from localStorage & BroadcastChannel instantly
+        window.addEventListener('storage', (e) => {
+          if (e.key === 'genshin_overlay_state' && e.newValue) {
+            state = JSON.parse(e.newValue);
+            applyTheme(state.theme);
+            render();
+          }
+        });
         broadcast.onmessage = (event) => {
-          if (event.data && event.data.payload) {
-            updateStateFromPayload(event.data.payload);
+          if (event.data) {
+            state = event.data;
+            applyTheme(state.theme);
+            render();
           }
         };
+      } else {
+        syncInputs();
+        applyTheme(state.theme);
+        render();
       }
-
-      // Storage event listener for instantaneous cross-process sync
-      window.addEventListener('storage', (e) => {
-        if (e.key === 'genshin_overlay_state_v3') {
-          loadSavedState();
-        }
-      });
-
-      // High-Frequency 200ms Polling Loop to guarantee real-time OBS sync across file:// and browser sandboxes
-      setInterval(() => {
-        loadSavedState();
-      }, 200);
     });
 
-    function saveState() {
-      const payload = {
-        channel: state.channel,
-        title: state.title,
-        notice: state.notice,
-        patch: state.patch,
-        social: state.social,
-        theme: state.theme,
-        minutes: state.minutes,
-        timerTargetTimestamp: state.timerTargetTimestamp,
-        timerSeconds: state.timerSeconds,
-        timerRunning: state.timerRunning,
-        updatedAt: Date.now()
-      };
-      try {
-        localStorage.setItem('genshin_overlay_state_v3', JSON.stringify(payload));
-        lastStateUpdatedAt = payload.updatedAt;
-      } catch (e) {
-        console.warn('LocalStorage write error', e);
+    // Timer loop
+    setInterval(() => {
+      if (state.timerRunning && state.timerSeconds > 0) {
+        state.timerSeconds--;
+        updateTimerDisplay();
       }
-      return payload;
-    }
+    }, 1000);
 
-    function loadSavedState() {
-      try {
-        const saved = localStorage.getItem('genshin_overlay_state_v3');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (parsed.updatedAt && parsed.updatedAt > lastStateUpdatedAt) {
-            lastStateUpdatedAt = parsed.updatedAt;
-            updateStateFromPayload(parsed);
-          }
-        }
-      } catch (e) {
-        console.warn('LocalStorage read error', e);
-      }
-    }
-
-    function updateStateFromPayload(parsed) {
-      if (!parsed) return;
-      state.channel = parsed.channel !== undefined ? parsed.channel : state.channel;
-      state.title = parsed.title !== undefined ? parsed.title : state.title;
-      state.notice = parsed.notice !== undefined ? parsed.notice : state.notice;
-      state.patch = parsed.patch !== undefined ? parsed.patch : state.patch;
-      state.social = parsed.social !== undefined ? parsed.social : state.social;
-      state.theme = parsed.theme !== undefined ? parsed.theme : state.theme;
-      state.minutes = parsed.minutes !== undefined ? parsed.minutes : state.minutes;
-      if (parsed.timerTargetTimestamp !== undefined) state.timerTargetTimestamp = parsed.timerTargetTimestamp;
-      if (parsed.timerSeconds !== undefined) state.timerSeconds = parsed.timerSeconds;
-      if (parsed.timerRunning !== undefined) state.timerRunning = parsed.timerRunning;
-
-      applyTheme(state.theme);
-      if (state.isObsMode) {
-        renderObsScene();
-      } else {
-        updateDashboardPreview();
-      }
-    }
-
-    function broadcastUpdate() {
+    function pushChanges() {
       state.channel = document.getElementById('cfgChannel').value;
       state.title = document.getElementById('cfgTitle').value;
       state.notice = document.getElementById('cfgNotice').value;
       state.patch = document.getElementById('cfgPatch').value;
       state.social = document.getElementById('cfgSocial').value;
       state.theme = document.getElementById('cfgTheme').value;
-
-      const payload = saveState();
-
-      if (broadcast) {
-        broadcast.postMessage({ type: 'SYNC_STATE', payload: payload });
-      }
-
+      
+      saveState();
+      broadcast.postMessage(state);
       applyTheme(state.theme);
-      updateDashboardPreview();
+      render();
     }
 
-    function handleManualSaveAndUpdate() {
-      broadcastUpdate();
-      showToast('⚡ Forced OBS Sync signal sent successfully!');
+    function setTimerMinutes() {
+      const mins = parseInt(document.getElementById('cfgMinutes').value) || 15;
+      state.minutes = mins;
+      state.timerSeconds = mins * 60;
+      pushChanges();
+    }
+
+    function switchScene(s) {
+      state.scene = s;
+      ['starting', 'brb', 'ended'].forEach(sceneName => {
+        const btn = document.getElementById(`tab-${sceneName}`);
+        if(btn) btn.className = sceneName === s ? 'px-3 py-1 rounded bg-amber-500/20 text-amber-200 text-xs font-bold border border-amber-500/50' : 'px-3 py-1 rounded text-slate-400 text-xs font-bold';
+      });
+      pushChanges();
     }
 
     function applyTheme(themeName) {
       document.getElementById('appBody').className = `min-h-screen theme-${themeName} bg-slate-950 text-slate-100 flex flex-col`;
     }
 
-    function syncInputsFromState() {
-      document.getElementById('cfgChannel').value = state.channel;
-      document.getElementById('cfgTitle').value = state.title;
-      document.getElementById('cfgNotice').value = state.notice;
-      document.getElementById('cfgPatch').value = state.patch;
-      document.getElementById('cfgSocial').value = state.social;
-      document.getElementById('cfgTheme').value = state.theme;
-      document.getElementById('cfgMinutes').value = state.minutes;
-    }
-
-    function switchPreviewScene(sceneName) {
-      state.previewScene = sceneName;
-      ['starting', 'brb', 'ended'].forEach(s => {
-        const tab = document.getElementById(`tab-${s}`);
-        if (s === sceneName) {
-          tab.className = 'px-3 py-1 rounded-lg border border-amber-500/60 bg-amber-500/20 text-amber-200 text-xs font-bold transition';
-        } else {
-          tab.className = 'px-3 py-1 rounded-lg border border-slate-800 text-slate-400 text-xs font-bold hover:text-amber-200 transition';
-        }
-      });
-      updateDashboardPreview();
-    }
-
-    function switchPreviewAspect(aspectName) {
-      state.previewAspect = aspectName;
-      const frame = document.getElementById('previewFrame');
-      const btnH = document.getElementById('btnAspectHoriz');
-      const btnV = document.getElementById('btnAspectVert');
-
-      if (aspectName === 'vertical') {
-        frame.className = 'h-[650px] aspect-[9/16] rounded-2xl overflow-hidden border-4 border-amber-500/40 shadow-2xl relative starfield-bg flex flex-col justify-between p-6 select-none transition-all duration-300';
-        btnV.className = 'px-3 py-1 rounded bg-amber-500/30 text-amber-200 text-xs font-bold border border-amber-500/50';
-        btnH.className = 'px-3 py-1 rounded text-slate-400 text-xs font-bold hover:text-amber-200';
-      } else {
-        frame.className = 'w-full aspect-video rounded-xl overflow-hidden border-2 border-amber-500/40 shadow-2xl relative starfield-bg flex flex-col justify-between p-6 md:p-10 select-none transition-all duration-300';
-        btnH.className = 'px-3 py-1 rounded bg-amber-500/30 text-amber-200 text-xs font-bold border border-amber-500/50';
-        btnV.className = 'px-3 py-1 rounded text-slate-400 text-xs font-bold hover:text-amber-200';
+    function syncInputs() {
+      if(document.getElementById('cfgChannel')) {
+        document.getElementById('cfgChannel').value = state.channel;
+        document.getElementById('cfgTitle').value = state.title;
+        document.getElementById('cfgNotice').value = state.notice;
+        document.getElementById('cfgPatch').value = state.patch;
+        document.getElementById('cfgSocial').value = state.social;
+        document.getElementById('cfgTheme').value = state.theme;
+        document.getElementById('cfgMinutes').value = state.minutes;
       }
-
-      updateDashboardPreview();
     }
 
-    // High-precision clock ticker
-    setInterval(() => {
-      updateTimerElements();
-    }, 1000);
-
-    function updateTimerElements() {
-      let remainingSecs = 0;
-      if (state.timerRunning) {
-        const diffMs = state.timerTargetTimestamp - Date.now();
-        remainingSecs = Math.max(0, Math.floor(diffMs / 1000));
-      } else {
-        remainingSecs = state.timerSeconds;
-      }
-
-      const mins = Math.floor(remainingSecs / 60);
-      const secs = remainingSecs % 60;
-      const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-
-      const activeTimers = document.querySelectorAll('.live-timer-display');
-      activeTimers.forEach(el => {
-        el.textContent = remainingSecs > 0 ? formatted : "STARTING NOW";
-      });
-    }
-
-    function toggleTimer() {
-      if (state.timerRunning) {
-        state.timerSeconds = Math.max(0, Math.floor((state.timerTargetTimestamp - Date.now()) / 1000));
-        state.timerRunning = false;
-      } else {
-        state.timerTargetTimestamp = Date.now() + state.timerSeconds * 1000;
-        state.timerRunning = true;
-      }
-
-      const btn = document.getElementById('btnTimerToggle');
-      if (btn) {
-        if (state.timerRunning) {
-          btn.textContent = '⏸ Pause';
-          btn.className = 'w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-1.5 px-2 rounded-lg text-xs transition';
-        } else {
-          btn.textContent = '▶ Resume';
-          btn.className = 'w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-1.5 px-2 rounded-lg text-xs transition';
-        }
-      }
-      broadcastUpdate();
-    }
-
-    function setNewTimerMinutes() {
-      const inputMins = parseInt(document.getElementById('cfgMinutes').value) || 15;
-      state.minutes = inputMins;
-      state.timerSeconds = inputMins * 60;
-      state.timerTargetTimestamp = Date.now() + state.timerSeconds * 1000;
-      broadcastUpdate();
-    }
-
-    function addTimerTime(secondsToAdd) {
-      if (state.timerRunning) {
-        state.timerTargetTimestamp += secondsToAdd * 1000;
-      } else {
-        state.timerSeconds += secondsToAdd;
-      }
-      broadcastUpdate();
-    }
-
-    function resetTimer() {
-      state.timerSeconds = state.minutes * 60;
-      state.timerTargetTimestamp = Date.now() + state.timerSeconds * 1000;
-      broadcastUpdate();
-    }
-
-    // Template Markup Builder
-    function generateMarkup(scene, isObs = false) {
-      const noticeMarkup = state.notice.trim() ? `
+    function buildMarkup(scene, isObs) {
+      const noticeHtml = state.notice.trim() ? `
         <div class="genshin-panel rounded-xl p-3 text-center border border-amber-400/40 bg-slate-900/90 shadow-lg">
           <p class="text-amber-200 font-bold ${isObs ? 'text-2xl' : 'text-xs'} flex items-center justify-center space-x-2">
             <span class="primogem-shape"></span>
             <span>${state.notice}</span>
           </p>
-        </div>
-      ` : '';
+        </div>` : '';
 
       if (scene === 'starting') {
         return `
           <div class="flex items-center justify-between border-b border-amber-500/20 pb-4">
             <div class="flex items-center space-x-3">
               <span class="primogem-shape"></span>
-              <h2 class="font-cinzel font-black glow-gold uppercase ${isObs ? 'text-4xl' : 'text-base'} tracking-wider">${state.channel}</h2>
+              <h2 class="font-cinzel font-black glow-gold uppercase ${isObs ? 'text-4xl' : 'text-base'}">${state.channel}</h2>
             </div>
-            <span class="px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-amber-200 ${isObs ? 'text-xl' : 'text-[11px]'} font-bold uppercase tracking-wider">
-              ${state.patch}
-            </span>
+            <span class="px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-amber-200 ${isObs ? 'text-xl' : 'text-[11px]'} font-bold uppercase">${state.patch}</span>
           </div>
-
           <div class="genshin-panel p-6 md:p-10 text-center space-y-4 my-auto flex flex-col justify-center items-center">
-            <h3 class="font-cinzel font-bold text-amber-300 uppercase tracking-widest ${isObs ? 'text-3xl' : 'text-xs'} flex items-center space-x-2">
-              <span>✦</span> <span>STREAM STARTING SOON</span> <span>✦</span>
-            </h3>
-
-            <div class="live-timer-display font-cinzel font-black glow-accent tracking-widest ${isObs ? 'text-9xl my-6' : 'text-4xl my-2'} text-amber-100">
-              00:00
-            </div>
-
+            <h3 class="font-cinzel font-bold text-amber-300 uppercase tracking-widest ${isObs ? 'text-3xl' : 'text-xs'}">✦ STREAM STARTING SOON ✦</h3>
+            <div id="timerEl" class="font-cinzel font-black glow-accent tracking-widest ${isObs ? 'text-9xl my-6' : 'text-4xl my-2'} text-amber-100">00:00</div>
             <p class="font-semibold text-slate-200 max-w-2xl ${isObs ? 'text-3xl' : 'text-xs'}">${state.title}</p>
-            ${noticeMarkup}
+            ${noticeHtml}
           </div>
-
           <div class="flex items-center justify-between border-t border-amber-500/20 pt-4">
-            <span class="text-amber-200/80 font-bold uppercase tracking-widest ${isObs ? 'text-xl' : 'text-[11px]'} flex items-center">
-              <span class="w-2 h-2 rounded-full bg-emerald-400 mr-2"></span> LIVE BROADCAST
-            </span>
-            <p class="text-slate-300 font-bold uppercase tracking-widest ${isObs ? 'text-xl' : 'text-[11px]'}">${state.social}</p>
-          </div>
-        `;
+            <span class="text-amber-200/80 font-bold uppercase ${isObs ? 'text-xl' : 'text-[11px]'}">LIVE BROADCAST</span>
+            <p class="text-slate-300 font-bold uppercase ${isObs ? 'text-xl' : 'text-[11px]'}">${state.social}</p>
+          </div>`;
       } else if (scene === 'brb') {
         return `
           <div class="flex items-center justify-between border-b border-amber-500/20 pb-4">
-            <div class="flex items-center space-x-3">
-              <span class="primogem-shape"></span>
-              <h2 class="font-cinzel font-black glow-gold uppercase ${isObs ? 'text-4xl' : 'text-base'} tracking-wider">${state.channel}</h2>
-            </div>
-            <span class="px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-amber-200 ${isObs ? 'text-xl' : 'text-[11px]'} font-bold uppercase">
-              ${state.patch}
-            </span>
+            <div class="flex items-center space-x-3"><span class="primogem-shape"></span><h2 class="font-cinzel font-black glow-gold uppercase ${isObs ? 'text-4xl' : 'text-base'}">${state.channel}</h2></div>
+            <span class="px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-amber-200 ${isObs ? 'text-xl' : 'text-[11px]'} font-bold uppercase">${state.patch}</span>
           </div>
-
           <div class="genshin-panel p-6 md:p-10 text-center space-y-4 my-auto flex flex-col justify-center items-center">
             <h3 class="font-cinzel font-bold text-amber-300 uppercase tracking-widest ${isObs ? 'text-4xl' : 'text-sm'}">BE RIGHT BACK</h3>
-            <p class="font-semibold text-slate-300 max-w-xl ${isObs ? 'text-2xl' : 'text-xs'}">Stepping away for a quick break! Stream will resume shortly.</p>
-            ${noticeMarkup}
+            <p class="font-semibold text-slate-300 max-w-xl ${isObs ? 'text-2xl' : 'text-xs'}">Stepping away for a quick break!</p>
+            ${noticeHtml}
           </div>
-
-          <div class="flex items-center justify-between border-t border-amber-500/20 pt-4">
-            <span class="text-amber-300 font-bold uppercase tracking-widest ${isObs ? 'text-xl' : 'text-[11px]'}">INTERMISSION</span>
-            <p class="text-slate-300 font-bold uppercase tracking-widest ${isObs ? 'text-xl' : 'text-[11px]'}">${state.social}</p>
-          </div>
-        `;
+          <div class="flex items-center justify-between border-t border-amber-500/20 pt-4"><span class="text-amber-300 font-bold uppercase ${isObs ? 'text-xl' : 'text-[11px]'}">INTERMISSION</span><p class="text-slate-300 font-bold uppercase ${isObs ? 'text-xl' : 'text-[11px]'}">${state.social}</p></div>`;
       } else {
         return `
           <div class="flex items-center justify-between border-b border-amber-500/20 pb-4">
-            <div class="flex items-center space-x-3">
-              <span class="primogem-shape"></span>
-              <h2 class="font-cinzel font-black glow-gold uppercase ${isObs ? 'text-4xl' : 'text-base'} tracking-wider">${state.channel}</h2>
-            </div>
-            <span class="px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-amber-200 ${isObs ? 'text-xl' : 'text-[11px]'} font-bold uppercase">
-              ${state.patch}
-            </span>
+            <div class="flex items-center space-x-3"><span class="primogem-shape"></span><h2 class="font-cinzel font-black glow-gold uppercase ${isObs ? 'text-4xl' : 'text-base'}">${state.channel}</h2></div>
+            <span class="px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-amber-200 ${isObs ? 'text-xl' : 'text-[11px]'} font-bold uppercase">${state.patch}</span>
           </div>
-
           <div class="genshin-panel p-6 md:p-10 text-center space-y-4 my-auto flex flex-col justify-center items-center">
             <h3 class="font-cinzel font-bold text-red-400 uppercase tracking-widest ${isObs ? 'text-4xl' : 'text-sm'}">STREAM ENDED</h3>
-            <p class="font-semibold text-slate-300 max-w-xl ${isObs ? 'text-2xl' : 'text-xs'}">Thank you for watching and hanging out today!</p>
-            ${noticeMarkup}
+            <p class="font-semibold text-slate-300 max-w-xl ${isObs ? 'text-2xl' : 'text-xs'}">Thank you for watching today!</p>
+            ${noticeHtml}
           </div>
-
-          <div class="flex items-center justify-between border-t border-amber-500/20 pt-4">
-            <span class="text-amber-300 font-bold uppercase tracking-widest ${isObs ? 'text-xl' : 'text-[11px]'}">OFFLINE</span>
-            <p class="text-slate-300 font-bold uppercase tracking-widest ${isObs ? 'text-xl' : 'text-[11px]'}">${state.social}</p>
-          </div>
-        `;
+          <div class="flex items-center justify-between border-t border-amber-500/20 pt-4"><span class="text-amber-300 font-bold uppercase ${isObs ? 'text-xl' : 'text-[11px]'}">OFFLINE</span><p class="text-slate-300 font-bold uppercase ${isObs ? 'text-xl' : 'text-[11px]'}">${state.social}</p></div>`;
       }
     }
 
-    function updateDashboardPreview() {
-      const renderArea = document.getElementById('previewRenderArea');
-      if (renderArea) {
-        renderArea.innerHTML = generateMarkup(state.previewScene, false);
-        updateTimerElements();
+    function render() {
+      const area = state.isObsMode ? document.getElementById('obsRenderArea') : document.getElementById('renderArea');
+      if (area) {
+        area.innerHTML = buildMarkup(state.isObsMode ? state.scene : state.scene, state.isObsMode);
+        updateTimerDisplay();
       }
     }
 
-    function renderObsScene() {
-      const renderArea = document.getElementById('obsRenderArea');
-      if (renderArea) {
-        renderArea.innerHTML = generateMarkup(state.scene, true);
-        updateTimerElements();
-      }
-    }
-
-    function copyStaticUrl(scene, aspect) {
-      const baseUrl = window.location.origin + window.location.pathname;
-      const antiCacheUrl = `${baseUrl}?scene=${scene}&aspect=${aspect}`;
-      
-      const dummy = document.createElement('textarea');
-      document.body.appendChild(dummy);
-      dummy.value = antiCacheUrl;
-      dummy.select();
-      document.execCommand('copy');
-      document.body.removeChild(dummy);
-
-      showToast('✓ Static OBS URL copied to clipboard!');
-    }
-
-    function showToast(msg) {
-      const toast = document.getElementById('toast');
-      if (toast) {
-        toast.firstElementChild.textContent = msg;
-        toast.classList.remove('opacity-0', 'translate-y-3', 'pointer-events-none');
-        setTimeout(() => {
-          toast.classList.add('opacity-0', 'translate-y-3', 'pointer-events-none');
-        }, 3000);
-      }
+    function updateTimerDisplay() {
+      const mins = Math.floor(state.timerSeconds / 60);
+      const secs = state.timerSeconds % 60;
+      const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      const timerEls = document.querySelectorAll('#timerEl');
+      timerEls.forEach(el => { el.textContent = state.timerSeconds > 0 ? formatted : "STARTING NOW"; });
     }
   </script>
 </body>
